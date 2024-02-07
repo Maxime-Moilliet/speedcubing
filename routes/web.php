@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Times\StoreTimeController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', WelcomeController::class);
+Route::post('add-time', StoreTimeController::class)->name('times.store');

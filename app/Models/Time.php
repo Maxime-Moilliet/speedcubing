@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -20,8 +22,8 @@ class Time extends Model
     protected function time(): Attribute
     {
         return Attribute::make(
-            get: static fn(int $time) => $time / 100,
-            set: static fn(int $time) => $time * 100,
+            get: static fn (int $time) => $time / 100,
+            set: static fn (float $time) => $time * 100,
         );
     }
 }
