@@ -18,7 +18,8 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.1",
-        "spatie/laravel-ignition": "^2.0"
+        "spatie/laravel-ignition": "^2.0",
+        "tightenco/duster": "^2.7"
     },
     "autoload": {
         "psr-4": {
@@ -33,6 +34,8 @@
         }
     },
     "scripts": {
+        "lint": "./vendor/bin/duster lint",
+        "fix": "./vendor/bin/duster fix",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
