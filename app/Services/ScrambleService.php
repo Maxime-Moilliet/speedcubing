@@ -19,7 +19,7 @@ class ScrambleService
         $moves[] = $this->moves[array_rand($this->moves)];
 
         for ($i = 0; $i < rand($this->minMoves - 1, $this->maxMoves - 1); $i++) {
-            $movesAccepted = array_filter($this->moves, static fn($m) => !str_contains($m, substr($moves[$i], 0, 1)));
+            $movesAccepted = array_filter($this->moves, static fn ($m) => ! str_contains($m, substr($moves[$i], 0, 1)));
             $moves[] = $movesAccepted[array_rand($movesAccepted)];
         }
 
