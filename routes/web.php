@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\WelcomeController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,3 +13,5 @@
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/', WelcomeController::class);
