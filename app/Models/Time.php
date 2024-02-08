@@ -8,6 +8,7 @@ use App\QueryBuilders\Time\TimeQueryBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Time extends Model
 {
@@ -35,5 +36,10 @@ class Time extends Model
             get: fn(int $time) => $time / 100,
             set: fn(float $time) => $time * 100,
         );
+    }
+
+    public function session(): BelongsTo
+    {
+        return $this->belongsTo(Time::class);
     }
 }
