@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\QueryBuilders\Time\TimeQueryBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,18 +13,27 @@ class Time extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['time', 'scramble', 'is_incomplete', 'is_dnf'];
+    protected $guarded = [];
 
     protected $casts = [
         'is_incomplete' => 'boolean',
         'is_dnf' => 'boolean',
     ];
 
+    /**
+     * @param $query
+     * @return TimeQueryBuilder<Time>
+     */
+    public function newEloquentBuilder($query): TimeQueryBuilder
+    {
+        return new TimeQueryBuilder($query);
+    }
+
     protected function time(): Attribute
     {
         return Attribute::make(
-            get: static fn (int $time) => $time / 100,
-            set: static fn (float $time) => $time * 100,
+            get: fn(int $time) => $time / 100,
+            set: fn(float $time) => $time * 100,
         );
     }
 }

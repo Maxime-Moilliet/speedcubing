@@ -14,7 +14,7 @@ class WelcomeController extends Controller
     {
         return view('welcome', [
             'scramble' => $scrambleService->generate(),
-            'times' => Time::get(),
+            'times' => Time::latestTimes()->get(),
         ]);
     }
 }
