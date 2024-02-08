@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', WelcomeController::class);
-Route::post('add-time', StoreTimeController::class)->name('time.store');
+Route::get('/{session:name?}', WelcomeController::class)->name('welcome');
+Route::post('/time/{session}', StoreTimeController::class)->name('time.store');

@@ -17,7 +17,7 @@ class SessionFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'session',
+            'name' => fake()->words(1, true),
         ];
     }
 }

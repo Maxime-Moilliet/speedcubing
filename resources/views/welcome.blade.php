@@ -2,9 +2,15 @@
 
 @section('app')
     <main>
-        <h1>Scramble</h1>
+        <ul>
+            @foreach($sessions as $s)
+                <li><a href="{{ route('welcome', $s->name) }}">{{ $s->name }}</a></li>
+            @endforeach
+        </ul>
+        <h1>Session : {{ $session->name }}</h1>
+        <h2>Scramble</h2>
         <p>{{ $scramble }}</p>
-        <form action="{{ route('time.store') }}" method="post">
+        <form action="{{ route('time.store', $session) }}" method="post">
             @csrf
             <div>
                 <input type="number" step="0.01" name="time">
@@ -17,8 +23,8 @@
             </div>
         </form>
         <ul>
-            @foreach ($times as $time)
-                <li>{{ $time->time }} ms - {{ $time->scramble }}</li>
+            @foreach ($session->times as $time)
+                <li>{{ $time->time }} s - {{ $time->scramble }}</li>
             @endforeach
         </ul>
     </main>

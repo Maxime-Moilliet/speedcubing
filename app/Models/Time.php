@@ -33,7 +33,7 @@ class Time extends Model
     protected function time(): Attribute
     {
         return Attribute::make(
-            get: fn(int $time) => $time / 100,
+            get: fn(int $time) => number_format($time / 100, 2),
             set: fn(float $time) => $time * 100,
         );
     }
