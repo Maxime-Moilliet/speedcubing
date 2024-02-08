@@ -24,7 +24,14 @@
         </form>
         <ul>
             @foreach ($session->times as $time)
-                <li>{{ $time->time }} s - {{ $time->scramble }}</li>
+                <li>
+                    {{ $time->time }} s - {{ $time->scramble }}
+                    <form action="{{ route('time.destroy', $time) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
             @endforeach
         </ul>
     </main>
