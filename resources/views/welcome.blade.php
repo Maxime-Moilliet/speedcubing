@@ -3,6 +3,11 @@
 @section('app')
     <main>
         <ul>
+            <form action="{{ route('session.store') }}" method="post">
+                @csrf
+                <input type="text" name="name">
+                <button type="submit">Add</button>
+            </form>
             @foreach($sessions as $s)
                 <li>
                     <a href="{{ route('welcome', $s->name) }}">{{ $s->name }}</a>

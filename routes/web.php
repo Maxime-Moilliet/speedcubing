@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Session\DestroySessionController;
+use App\Http\Controllers\Session\StoreSessionController;
 use App\Http\Controllers\Time\DestroyAllTimeController;
 use App\Http\Controllers\Time\DestroyTimeController;
 use App\Http\Controllers\Time\StoreTimeController;
@@ -27,5 +28,6 @@ Route::prefix('/time')->name('time.')->group(function () {
 });
 
 Route::prefix('/session')->name('session.')->group(callback: function () {
+    Route::post('/', StoreSessionController::class)->name('store');
     Route::delete('/{session}', DestroySessionController::class)->name('destroy');
 });
