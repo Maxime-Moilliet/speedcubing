@@ -15,7 +15,7 @@ readonly class CalculateTimeAverageService
     {
         $allTime = $this->session->times->reduce(fn (float $sum, Time $time) => $sum + $time->getFinalTime(), 0);
 
-        if ((bool) $this->session->times_count) {
+        if ($this->session->times_count) {
             return round($allTime / $this->session->times_count, 2);
         }
 
