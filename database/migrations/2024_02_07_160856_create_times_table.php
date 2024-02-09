@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->string('scramble');
             $table->boolean('is_incomplete')->default(false);
             $table->boolean('is_dnf')->default(false);
-            $table->foreignIdFor(Session::class);
+            $table->foreignIdFor(Session::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

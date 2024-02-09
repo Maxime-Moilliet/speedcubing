@@ -4,7 +4,14 @@
     <main>
         <ul>
             @foreach($sessions as $s)
-                <li><a href="{{ route('welcome', $s->name) }}">{{ $s->name }}</a></li>
+                <li>
+                    <a href="{{ route('welcome', $s->name) }}">{{ $s->name }}</a>
+                    <form action="{{ route('session.destroy', $s) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
             @endforeach
         </ul>
         <h1>Session : {{ $session->name }}</h1>
