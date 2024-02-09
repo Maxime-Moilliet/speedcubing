@@ -12,7 +12,7 @@ class CalculateTimeService
     {
     }
 
-    public function calculate(): float
+    public function calculate(): float|int
     {
         $timeBase = floatval($this->time->time);
 

@@ -30,7 +30,7 @@ class Time extends Model
         return new TimeQueryBuilder($query);
     }
 
-    public function getFinalTime(): float
+    public function getFinalTime(): float|int
     {
         return (new CalculateTimeService($this))->calculate();
     }
