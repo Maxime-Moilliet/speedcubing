@@ -22,6 +22,11 @@
                 <button type="submit">Envoyer</button>
             </div>
         </form>
+        <form action="{{ route('time.destroyAll', $session) }}" method="post">
+            @csrf
+            @method('delete')
+            <button type="submit">Delete all times</button>
+        </form>
         <ul>
             @foreach ($session->times as $time)
                 <li>
