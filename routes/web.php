@@ -19,15 +19,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{session:name?}', WelcomeController::class)->name('welcome');
+Route::get('{session:name?}', WelcomeController::class)->name('welcome');
 
-Route::prefix('/time')->name('time.')->group(function () {
-    Route::post('/{session}', StoreTimeController::class)->name('store');
-    Route::delete('/destroy/{time}', DestroyTimeController::class)->name('destroy');
-    Route::delete('/destroy-all/{session}', DestroyAllTimeController::class)->name('destroyAll');
+Route::prefix('time')->name('time.')->group(function () {
+    Route::post('{session}', StoreTimeController::class)->name('store');
+    Route::delete('destroy/{time}', DestroyTimeController::class)->name('destroy');
+    Route::delete('destroy-all/{session}', DestroyAllTimeController::class)->name('destroyAll');
 });
 
-Route::prefix('/session')->name('session.')->group(callback: function () {
+Route::prefix('session')->name('session.')->group(callback: function () {
     Route::post('/', StoreSessionController::class)->name('store');
-    Route::delete('/{session}', DestroySessionController::class)->name('destroy');
+    Route::delete('{session}', DestroySessionController::class)->name('destroy');
 });

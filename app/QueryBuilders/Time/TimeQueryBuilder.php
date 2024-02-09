@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Model;
 class TimeQueryBuilder extends Builder
 {
     /**
-     * @param int|null $limit
      * @return TimeQueryBuilder<TModelClass>
      */
     public function latestTimes(?int $limit = 50): TimeQueryBuilder

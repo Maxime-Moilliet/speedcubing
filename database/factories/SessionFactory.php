@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class SessionFactory extends Factory
 {
-
     /**
      * @return array<string, mixed>
      */

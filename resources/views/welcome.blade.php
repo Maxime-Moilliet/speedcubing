@@ -8,7 +8,7 @@
                 <input type="text" name="name">
                 <button type="submit">Add</button>
             </form>
-            @foreach($sessions as $s)
+            @foreach ($sessions as $s)
                 <li>
                     <a href="{{ route('welcome', $s->name) }}">{{ $s->name }}</a>
                     <form action="{{ route('session.destroy', $s) }}" method="post">
@@ -34,6 +34,7 @@
                 <button type="submit">Envoyer</button>
             </div>
         </form>
+        <p>Average : {{ $average }} s</p>
         <form action="{{ route('time.destroyAll', $session) }}" method="post">
             @csrf
             @method('delete')
