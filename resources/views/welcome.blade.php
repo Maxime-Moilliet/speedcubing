@@ -3,13 +3,13 @@
 @section('app')
     <main class="flex">
         <aside class="fixed top-0 bottom-0 min-w-[18rem] bg-indigo-600 px-6 flex flex-col gap-3">
-            <p class="text-white font-bold text-xl py-4">SpeedCubing</p>
+            <a href="{{ route('welcome') }}" class="text-white font-bold text-xl py-4">SpeedCubing</a>
             <form action="{{ route('session.store') }}" method="post" class="flex gap-1 pb-2 pt-4">
                 @csrf
                 <input type="text" name="name" placeholder="Create new session"
                        class="w-full border-0 bg-indigo-700 py-1.5 pl-2 text-white placeholder:text-gray-200 focus:ring-0 sm:leading-6 rounded">
                 <button type="submit"
-                        class="rounded-md bg-white px-3 py-1.5 font-semibold text-indigo-600 hover:bg-indigo-500">
+                        class="rounded-md bg-white px-3 py-1.5 font-semibold text-indigo-600 hover:bg-indigo-100">
                     V
                 </button>
             </form>
