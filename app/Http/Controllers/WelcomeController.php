@@ -25,7 +25,10 @@ class WelcomeController extends Controller
             'scramble' => (new ScrambleService)->generate(),
             'session' => $session,
             'sessions' => Session::get(),
-            'average' => (new CalculateTimeAverageService($session))->calculate(),
+            'average' => (new CalculateTimeAverageService(
+                times: $session->times,
+                times_count: $session->times_count
+            ))->calculate(),
         ]);
     }
 }
