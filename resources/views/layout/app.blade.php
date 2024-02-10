@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" href="{{ asset("favicon.png") }}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>SpeedCubing</title>
+    @vite('resources/css/app.css')
     @yield("css")
 </head>
 <body>
