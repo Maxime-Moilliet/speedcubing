@@ -14,12 +14,14 @@ class WelcomeController extends Controller
     public function __invoke(Session $session): View
     {
         $session = $session->exists ?
-            $session->load('times')->loadCount([
-                'times' => fn ($query) => $query->where('is_dnf', false),
-            ]) :
-            Session::with('times')->withCount([
-                'times' => fn ($query) => $query->where('is_dnf', false),
-            ])->first();
+            $session->load(['times' => fn($query) => $query->orderByDesc('created_at')])
+                ->loadCount([
+                    'times' => fn($query) => $query->where('is_dnf', false),
+                ]) :
+            Session::with(['times' => fn($query) => $query->orderByDesc('created_at')])
+                ->withCount([
+                    'times' => fn($query) => $query->where('is_dnf', false),
+                ])->first();
 
         return view('welcome', [
             'scramble' => (new ScrambleService)->generate(),
