@@ -42,11 +42,17 @@
                         <input type="number" step="0.01" name="time"
                                class="w-[300px] border bg-white py-2 pl-2 text-gray-900 text-center text-xl placeholder:text-gray-400 focus:ring-0 sm:leading-6 rounded">
                         <input type="hidden" name="scramble" value="{{ $scramble }}">
-                        <div>
-                            <input type="checkbox" name="is_incomplete" id="is_incomplete">
-                            <label for="is_incomplete">+ 2</label>
-                            <input type="checkbox" name="is_dnf" id="is_dnf" class="ml-6">
-                            <label for="is_dnf">DNF</label>
+                        <div class="flex gap-4">
+                            <div class="flex gap-1 items-center">
+                                <input type="checkbox" name="is_incomplete" id="is_incomplete"
+                                       class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                                <label for="is_incomplete">+ 2</label>
+                            </div>
+                            <div class="flex gap-1 items-center">
+                                <input type="checkbox" name="is_dnf" id="is_dnf"
+                                       class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                                <label for="is_dnf">DNF</label>
+                            </div>
                         </div>
                         <button type="submit"
                                 class="rounded bg-indigo-600 px-3 py-1.5 font-semibold text-white hover:bg-indigo-700">
