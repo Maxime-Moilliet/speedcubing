@@ -17,7 +17,7 @@
                 @foreach ($sessions as $s)
                     <li>
                         <a href="{{ route('welcome', $s->name) }}"
-                           class="flex justify-between text-white p-2 px-3 w-full rounded @if($s->id === $session->id) bg-indigo-700 @endif hover:bg-indigo-700">
+                           class="flex justify-between text-white p-2 px-3 w-full rounded @if ($s->id === $session->id) bg-indigo-700 @endif hover:bg-indigo-700">
                             {{ $s->name }}
                             <form action="{{ route('session.destroy', $s) }}" method="post">
                                 @csrf
