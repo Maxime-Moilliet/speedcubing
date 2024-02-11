@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\QueryBuilders\Time\TimeQueryBuilder;
 use App\Services\CalculateTimeService;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,14 +20,6 @@ class Time extends Model
         'is_dnf' => 'boolean',
     ];
 
-    /**
-     * @return TimeQueryBuilder<Time>
-     */
-    public function newEloquentBuilder($query): TimeQueryBuilder
-    {
-        return new TimeQueryBuilder($query);
-    }
-
     public function getFinalTime(): float|int
     {
         return (new CalculateTimeService($this))->calculate();
@@ -38,13 +28,5 @@ class Time extends Model
     public function session(): BelongsTo
     {
         return $this->belongsTo(Time::class);
-    }
-
-    protected function time(): Attribute
-    {
-        return Attribute::make(
-            get: fn (int $time) => number_format($time / 100, 2),
-            set: fn (float $time) => $time * 100,
-        );
     }
 }

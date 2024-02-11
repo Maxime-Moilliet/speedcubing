@@ -12,6 +12,6 @@
 </head>
 <body>
 @yield("app")
-@yield("scripts")
+@stack("scripts")
 </body>
 </html>

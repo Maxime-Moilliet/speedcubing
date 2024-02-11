@@ -2,14 +2,14 @@
 
 @section('app')
     <main class="flex">
-        <aside class="fixed top-0 bottom-0 min-w-[18rem] bg-slate-600 px-6 flex flex-col gap-3">
+        <aside class="fixed top-0 bottom-0 min-w-[18rem] bg-indigo-600 px-6 flex flex-col gap-3">
             <a href="{{ route('welcome') }}" class="text-white font-bold text-xl py-4">SpeedCubing</a>
             <form action="{{ route('session.store') }}" method="post" class="flex gap-1 pb-2 pt-4">
                 @csrf
                 <input type="text" name="name" placeholder="Create new session"
-                       class="w-full border-0 bg-slate-700 py-1.5 pl-2 text-white placeholder:text-gray-200 focus:ring-0 sm:leading-6 rounded">
+                       class="w-full border-0 bg-indigo-700 py-1.5 pl-2 text-white placeholder:text-gray-200 focus:ring-0 sm:leading-6 rounded">
                 <button type="submit"
-                        class="rounded-md bg-white px-3 py-1.5 font-semibold text-slate-600 hover:bg-slate-100">
+                        class="rounded-md bg-white px-3 py-1.5 font-semibold text-indigo-600 hover:bg-indigo-100">
                     V
                 </button>
             </form>
@@ -17,7 +17,7 @@
                 @foreach ($sessions as $s)
                     <li>
                         <a href="{{ route('welcome', $s->name) }}"
-                           class="flex justify-between text-white p-2 px-3 w-full rounded @if ($s->id === $session->id) bg-slate-700 @endif hover:bg-slate-700">
+                           class="flex justify-between text-white p-2 px-3 w-full rounded @if ($s->id === $session->id) bg-indigo-700 @endif hover:bg-indigo-700">
                             {{ $s->name }}
                             <form action="{{ route('session.destroy', $s) }}" method="post">
                                 @csrf
@@ -30,32 +30,33 @@
             </ul>
         </aside>
         <div class="w-full pl-[18rem] pb-20">
-            <div class="flex justify-center py-4 bg-slate-500 w-full">
+            <div class="flex justify-center py-4 bg-indigo-500 w-full">
                 <p class="text-2xl text-white font-bold tracking-widest">{{ $scramble }}</p>
             </div>
-            <p class="mx-auto text-center pt-12 pb-6 text-4xl font-semibold text-gray-900">{{ $average }}<span
-                    class="text-xl">s avg</span></p>
+            <p class="mx-auto text-center pt-12 pb-6 text-4xl font-semibold text-gray-900">
+                {{ number_format($average, 2) }}<span class="text-xl">s avg</span>
+            </p>
             <div class="flex justify-center">
                 <form action="{{ route('time.store', $session) }}" method="post">
                     @csrf
                     <div class="flex flex-col gap-2">
-                        <input type="number" step="0.01" name="time"
+                        <input type="number" step="0.01" name="time" placeholder="10"
                                class="w-[300px] border bg-white py-2 pl-2 text-gray-900 text-center text-xl placeholder:text-gray-400 focus:ring-0 sm:leading-6 rounded">
                         <input type="hidden" name="scramble" value="{{ $scramble }}">
                         <div class="flex gap-4">
                             <div class="flex gap-1 items-center">
                                 <input type="checkbox" name="is_incomplete" id="is_incomplete"
-                                       class="h-4 w-4 rounded border-gray-300 text-slate-600 focus:ring-slate-600">
+                                       class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 <label for="is_incomplete">+ 2</label>
                             </div>
                             <div class="flex gap-1 items-center">
                                 <input type="checkbox" name="is_dnf" id="is_dnf"
-                                       class="h-4 w-4 rounded border-gray-300 text-slate-600 focus:ring-slate-600">
+                                       class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 <label for="is_dnf">DNF</label>
                             </div>
                         </div>
                         <button type="submit"
-                                class="rounded bg-slate-600 px-3 py-1.5 font-semibold text-white hover:bg-slate-700">
+                                class="rounded bg-indigo-600 px-3 py-1.5 font-semibold text-white hover:bg-indigo-700">
                             Add
                         </button>
                     </div>
@@ -66,7 +67,7 @@
                     @csrf
                     @method('delete')
                     <button type="submit"
-                            class="text-sm rounded bg-slate-600 px-3 py-1.5 text-white hover:bg-slate-700">
+                            class="text-sm rounded bg-indigo-600 px-3 py-1.5 text-white hover:bg-indigo-700">
                         Delete all times
                     </button>
                 </form>
@@ -82,23 +83,17 @@
                             </th>
                             <th class="p-4 border-b border-gray-200 bg-gray-100">
                                 <p class="block text-sm font-normal leading-none text-gray-900 opacity-70">
-                                    Time</p>
+                                    Time
+                                </p>
                             </th>
                             <th class="p-4 border-b border-gray-200 bg-gray-100">
                                 <p class="block text-sm font-normal leading-none text-gray-900 opacity-70">
-                                    Scramble</p>
+                                    Scramble
+                                </p>
                             </th>
                             <th class="p-4 border-b border-gray-200 bg-gray-100">
                                 <p class="block text-sm font-normal leading-none text-gray-900 opacity-70">
-                                    + 2</p>
-                            </th>
-                            <th class="p-4 border-b border-gray-200 bg-gray-100">
-                                <p class="block text-sm font-normal leading-none text-gray-900 opacity-70">
-                                    DNF</p>
-                            </th>
-                            <th class="p-4 border-b border-gray-200 bg-gray-100">
-                                <p class="block text-sm font-normal leading-none text-gray-900 opacity-70">
-                                    Action
+                                    Actions
                                 </p>
                             </th>
                         </tr>
@@ -113,22 +108,12 @@
                                 </td>
                                 <td class="p-4 border-b border-gray-200">
                                     <p class="block text-sm font-normal leading-normal text-gray-700">
-                                        {{ $time->time }}
+                                        {{ $time->is_dnf ? "DNF ({$time->time})" : $time->time }} {{ $time->is_incomplete ? '(+2)' : '' }}
                                     </p>
                                 </td>
                                 <td class="p-4 border-b border-gray-200">
                                     <p class="block text-sm font-normal leading-normal text-gray-700">
                                         {{ $time->scramble }}
-                                    </p>
-                                </td>
-                                <td class="p-4 border-b border-gray-200">
-                                    <p class="block text-sm font-normal leading-normal text-gray-700">
-                                        {{ $time->is_incomplete ? 'v' : 'x' }}
-                                    </p>
-                                </td>
-                                <td class="p-4 border-b border-gray-200">
-                                    <p class="block text-sm font-normal leading-normal text-gray-700">
-                                        {{ $time->is_dnf ? 'v' : 'x' }}
                                     </p>
                                 </td>
                                 <td class="p-4 border-b border-gray-200">

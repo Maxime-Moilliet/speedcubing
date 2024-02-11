@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create('times', function (Blueprint $table) {
             $table->id();
-            $table->integer('time');
+            $table->decimal('time');
             $table->string('scramble');
             $table->boolean('is_incomplete')->default(false);
             $table->boolean('is_dnf')->default(false);

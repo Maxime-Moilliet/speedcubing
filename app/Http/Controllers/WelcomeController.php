@@ -14,13 +14,13 @@ class WelcomeController extends Controller
     public function __invoke(Session $session): View
     {
         $session = $session->exists ?
-            $session->load(['times' => fn($query) => $query->orderByDesc('created_at')])
+            $session->load(['times' => fn ($query) => $query->latest()])
                 ->loadCount([
-                    'times' => fn($query) => $query->where('is_dnf', false),
+                    'times' => fn ($query) => $query->where('is_dnf', false),
                 ]) :
-            Session::with(['times' => fn($query) => $query->orderByDesc('created_at')])
+            Session::with(['times' => fn ($query) => $query->latest()])
                 ->withCount([
-                    'times' => fn($query) => $query->where('is_dnf', false),
+                    'times' => fn ($query) => $query->where('is_dnf', false),
                 ])->first();
 
         return view('welcome', [

@@ -18,11 +18,12 @@ class TimeFactory extends Factory
      */
     public function definition(): array
     {
+        $isDnf = fake()->boolean(10);
         return [
             'time' => fake()->randomFloat(2, 8, 30),
             'scramble' => (new ScrambleService)->generate(),
-            'is_incomplete' => fake()->boolean(10),
-            'is_dnf' => fake()->boolean(10),
+            'is_incomplete' => !$isDnf && fake()->boolean(10),
+            'is_dnf' => $isDnf,
         ];
     }
 }
